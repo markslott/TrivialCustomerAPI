@@ -16,6 +16,10 @@ var options = {
   useStubs: process.env.NODE_ENV === 'development' // Conditionally turn on stubs (mock mode)
 };
 
+var uioptions = {
+  swaggerUi : "/"
+}
+
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
 var spec = fs.readFileSync(path.join(__dirname,'api/swagger.yaml'), 'utf8');
 var swaggerDoc = jsyaml.safeLoad(spec);
@@ -33,7 +37,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use(middleware.swaggerRouter(options));
 
   // Serve the Swagger documents and Swagger UI
-  app.use(middleware.swaggerUi());
+  app.use(middleware.swaggerUi(uioptions));
 
   // Start the server
   http.createServer(app).listen(serverPort, function () {
