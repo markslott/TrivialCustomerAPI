@@ -7,11 +7,11 @@ var fs = require('fs'),
 var app = require('connect')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
-var serverPort = process.env.PORT;
+var serverPort = process.env.PORT || 8080;
 
 // swaggerRouter configuration
 var options = {
-  swaggerUi: path.join(__dirname, '/swagger.json'),
+  swaggerUi: path.join(__dirname, '/api/swagger.json'),
   controllers: path.join(__dirname, './controllers'),
   useStubs: process.env.NODE_ENV === 'development' // Conditionally turn on stubs (mock mode)
 };

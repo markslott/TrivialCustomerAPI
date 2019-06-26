@@ -1,0 +1,138 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is a simple API",
+    "version" : "1.0.0",
+    "title" : "Simple Customer API",
+    "contact" : {
+      "email" : "mlott@salesforce.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "fathomless-meadow-53177.herokuapp.com",
+  "basePath" : "/markslott5/TrivialCustomerAPI/1.0.0",
+  "tags" : [ {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/customers" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "operationId" : "getCustomers",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "list of customers",
+            "schema" : {
+              "$ref" : "#/definitions/Customers"
+            }
+          },
+          "400" : {
+            "description" : "something went wrong"
+          }
+        }
+      }
+    },
+    "/customer" : {
+      "get" : {
+        "produces" : [ "application/json" ],
+        "operationId" : "getCustomer",
+        "parameters" : [ {
+          "name" : "custId",
+          "in" : "query",
+          "description" : "customerId",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "get a customer by id",
+            "schema" : {
+                "$ref" : "#/definitions/Customer"
+            }
+          },
+          "400" : {
+            "description" : "something went wrong"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "adds a customer record",
+        "description" : "Adds a customer record",
+        "operationId" : "addCustomer",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "customer",
+          "description" : "Customer to add",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Customer"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "customer added"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Customer" : {
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "phone" : {
+          "type" : "string"
+        },
+        "street" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "postal" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Customers" : {
+        "type" : "array",
+        "items" : {
+            "$ref" : "#/definitions/Customer"
+        }
+    }
+  }
+}
