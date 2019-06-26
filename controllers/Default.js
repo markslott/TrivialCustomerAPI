@@ -14,9 +14,9 @@ module.exports.addCustomer = function addCustomer (req, res, next) {
     });
 };
 
-module.exports.customerGET = function customerGET (req, res, next) {
+module.exports.getCustomer = function getCustomer (req, res, next) {
   var custId = req.swagger.params['custId'].value;
-  Default.customerGET(custId)
+  Default.getCustomer(custId)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -25,8 +25,8 @@ module.exports.customerGET = function customerGET (req, res, next) {
     });
 };
 
-module.exports.customersGET = function customersGET (req, res, next) {
-  Default.customersGET()
+module.exports.getCustomers = function getCustomers (req, res, next) {
+  Default.getCustomers()
     .then(function (response) {
       utils.writeJson(res, response);
     })

@@ -1,19 +1,5 @@
 'use strict';
 
-var customers = [
-  {
-    "id" : "1",
-    "city" : "Montgomery",
-    "country" : "USA",
-    "postal" : "19009",
-    "state" : "PA",
-    "street" : "2725 Quarry Rd",
-    "firstName" : "Bob",
-    "lastName" : "Hodges",
-    "email" : "bhodges@example.com",
-    "phone" : "(422) 555-5262"
-  }
-]
 
 /**
  * adds a customer record
@@ -24,8 +10,6 @@ var customers = [
  **/
 exports.addCustomer = function(customer) {
   return new Promise(function(resolve, reject) {
-    customers.push(customer);
-    console.log(customers);
     resolve();
   });
 }
@@ -36,17 +20,10 @@ exports.addCustomer = function(customer) {
  * custId String customerId
  * returns Object
  **/
-exports.customerGET = function(custId) {
+exports.getCustomer = function(custId) {
   return new Promise(function(resolve, reject) {
-    var c = {};
-    customers.forEach(function(customer) {
-      console.log("customer.id = " + customer.id + " and custId = " + custId);
-      if (customer.id == custId) {
-        c = customer;
-      }
-    })
     var examples = {};
-    examples['application/json'] = c;
+    examples['application/json'] = "{}";
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -58,12 +35,12 @@ exports.customerGET = function(custId) {
 
 /**
  *
- * returns List
+ * returns Object
  **/
-exports.customersGET = function() {
+exports.getCustomers = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
-    examples['application/json'] = customers;
+    examples['application/json'] = "";
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
