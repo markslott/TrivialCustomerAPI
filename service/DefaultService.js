@@ -39,12 +39,12 @@ exports.addCustomer = function(customer) {
 exports.customerGET = function(custId) {
   return new Promise(function(resolve, reject) {
     var c = {};
-    for (var customer in customers) {
+    customers.forEach(function(customer) {
       console.log("customer.id = " + customer.id + " and custId = " + custId);
       if (customer.id == custId) {
         c = customer;
       }
-     }
+    })
     var examples = {};
     examples['application/json'] = c;
     if (Object.keys(examples).length > 0) {
