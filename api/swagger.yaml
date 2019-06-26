@@ -1,0 +1,113 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a simple API"
+  version: "1.0.0"
+  title: "Simple Inventory API"
+  contact:
+    email: "you@your-company.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+basePath: "/markslott5/TrivialCustomerAPI/1.0.0"
+tags:
+- name: "admins"
+  description: "Secured Admin-only calls"
+- name: "developers"
+  description: "Operations available to regular developers"
+schemes:
+- "https"
+paths:
+  /customers:
+    get:
+      operationId: "customersGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "list of customers"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Customer"
+        400:
+          description: "something went wrong"
+      x-swagger-router-controller: "Default"
+  /customer:
+    get:
+      operationId: "customerGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "custId"
+        in: "query"
+        description: "customerId"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "get a customer by id"
+          schema:
+            type: "object"
+        400:
+          description: "something went wrong"
+      x-swagger-router-controller: "Default"
+    post:
+      summary: "adds a customer record"
+      description: "Adds a customer record"
+      operationId: "addCustomer"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "customer"
+        description: "Customer to add"
+        required: false
+        schema:
+          $ref: "#/definitions/Customer"
+      responses:
+        201:
+          description: "customer added"
+        400:
+          description: "invalid input, object invalid"
+        409:
+          description: "an existing item already exists"
+      x-swagger-router-controller: "Default"
+definitions:
+  Customer:
+    properties:
+      id:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+      street:
+        type: "string"
+      city:
+        type: "string"
+      state:
+        type: "string"
+      country:
+        type: "string"
+      postal:
+        type: "string"
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      country: "country"
+      phone: "phone"
+      city: "city"
+      street: "street"
+      id: "id"
+      state: "state"
+      postal: "postal"
+      email: "email"
