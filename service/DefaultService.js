@@ -40,6 +40,7 @@ exports.customerGET = function(custId) {
   return new Promise(function(resolve, reject) {
     var c = {};
     for (var customer in customers) {
+      console.log("customer.id = " + customer.id + " and custId = " + custId);
       if (customer.id == custId) {
         c = customer;
       }
