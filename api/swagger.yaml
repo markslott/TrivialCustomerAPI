@@ -9,7 +9,7 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "localhost:8080"
+host: "fathomless-meadow-53177"
 basePath: "/markslott5/TrivialCustomerAPI/1.0.0"
 tags:
 - name: "admins"
