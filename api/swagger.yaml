@@ -1,113 +1,100 @@
 ---
 swagger: "2.0"
 info:
-  description: "This is a simple API"
-  version: "1.0.0"
-  title: "Simple Inventory API"
+  description: This is a simple API
+  version: 1.0.0
+  title: Simple Customer API
   contact:
-    email: "you@your-company.com"
+    email: mlott@salesforce.com
   license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "fathomless-meadow-53177.herokuapp.com"
-basePath: "/markslott5/TrivialCustomerAPI/1.0.0"
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: virtserver.swaggerhub.com
+basePath: /markslott5/TrivialCustomerAPI/1.0.0
 tags:
-- name: "admins"
-  description: "Secured Admin-only calls"
-- name: "developers"
-  description: "Operations available to regular developers"
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
 schemes:
-- "https"
+- https
 paths:
   /customers:
     get:
-      operationId: "customersGET"
+      operationId: getCustomers
       produces:
-      - "application/json"
+      - application/json
       parameters: []
       responses:
         200:
-          description: "list of customers"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Customer"
+          description: list of customers
+          schema: {}
         400:
-          description: "something went wrong"
-      x-swagger-router-controller: "Default"
+          description: something went wrong
   /customer:
     get:
-      operationId: "customerGET"
+      operationId: getCustomer
       produces:
-      - "application/json"
+      - application/json
       parameters:
-      - name: "custId"
-        in: "query"
-        description: "customerId"
+      - name: custId
+        in: query
+        description: customerId
         required: true
-        type: "string"
+        type: string
       responses:
         200:
-          description: "get a customer by id"
+          description: get a customer by id
           schema:
-            type: "object"
+            type: object
         400:
-          description: "something went wrong"
-      x-swagger-router-controller: "Default"
+          description: something went wrong
     post:
-      summary: "adds a customer record"
-      description: "Adds a customer record"
-      operationId: "addCustomer"
+      summary: adds a customer record
+      description: Adds a customer record
+      operationId: addCustomer
       consumes:
-      - "application/json"
+      - application/json
       produces:
-      - "application/json"
+      - application/json
       parameters:
-      - in: "body"
-        name: "customer"
-        description: "Customer to add"
+      - in: body
+        name: customer
+        description: Customer to add
         required: false
         schema:
-          $ref: "#/definitions/Customer"
+          $ref: '#/definitions/Customer'
       responses:
         201:
-          description: "customer added"
+          description: customer added
         400:
-          description: "invalid input, object invalid"
+          description: invalid input, object invalid
         409:
-          description: "an existing item already exists"
-      x-swagger-router-controller: "Default"
+          description: an existing item already exists
 definitions:
   Customer:
     properties:
       id:
-        type: "string"
+        type: string
       firstName:
-        type: "string"
+        type: string
       lastName:
-        type: "string"
+        type: string
       email:
-        type: "string"
+        type: string
       phone:
-        type: "string"
+        type: string
       street:
-        type: "string"
+        type: string
       city:
-        type: "string"
+        type: string
       state:
-        type: "string"
+        type: string
       country:
-        type: "string"
+        type: string
       postal:
-        type: "string"
-    example:
-      firstName: "firstName"
-      lastName: "lastName"
-      country: "country"
-      phone: "phone"
-      city: "city"
-      street: "street"
-      id: "id"
-      state: "state"
-      postal: "postal"
-      email: "email"
+        type: string
+  Customers:
+    type: array
+    items:
+      $ref: '#/definitions/Customer'
